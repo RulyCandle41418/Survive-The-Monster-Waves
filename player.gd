@@ -4,6 +4,12 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -500.0
 
+var Health = 100
+
+@export var monster: CharacterBody2D
+@export var player: CharacterBody2D
+
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,3 +29,30 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	
+	if Input.is_action_pressed("Mouse_left") && global_position.distance_to(monster.global_position) < 150:
+		monster.hide()
+		
+	
+		
+		
+			
+	while global_position.distance_to(monster.global_position) < 125 && Health > 0:
+		await get_tree().create_timer(1).timeout
+		Health -= 10
+		print(Health)
+		return
+	if Health < 1:
+		player.hide()
+		
+		
+		
+	
+		
+		
+		
+
+	
+	
+	
