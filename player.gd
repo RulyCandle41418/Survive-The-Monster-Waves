@@ -7,8 +7,14 @@ const JUMP_VELOCITY = -500.0
 var Health = 100
 var Score = 0
 
+var CanDamage = true
+
 @export var monster: CharacterBody2D
 @export var player: CharacterBody2D
+
+var GameEnd = false
+
+
 
 	
 
@@ -33,47 +39,40 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed("Mouse_left") && global_position.distance_to(monster.global_position) < 150:
-		
-		monster.hide()
 		monster.set_collision_layer_value(1, false)
-		monster.set_collision_layer_value(1, false)
+		monster.set_collision_mask_value(1, false)
+		var Reset = true
+		CanDamage = false
 		Score += 75
 		print(Score)
+		CanDamage = true
 		
 		
 	
 		
 func _process(delta: float) -> void:
-			
 	if global_position.distance_to(monster.global_position) < 125 && Health > 0 && monster.visible:
 		Heal()
 		
+		
 func Heal():
-		
-		
-	await get_tree().create_timer(1.0).timeout
-	
-	if global_position.distance_to(monster.global_position) < 125 && Health > 0 && monster.visible:
-		Health += 1
+	if global_position.distance_to(monster.global_position) < 125 && Health > 0 && monster.visible and CanDamage:
+		Health -= 1
 		print(Health)
-			
-		
-		
-		
-		
-		
-		
-		
+
 	if Health < 1:
+		print(Score)
+		GameEnd = true
+		
+	if GameEnd:
 		player.hide()
 		
 		
+		player.set_collision_layer_value(1, false)
+		player.set_collision_mask_value(1, false)
 		
-	
+ 
 		
 		
 		
-
-	
-	
-	
+		
