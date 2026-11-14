@@ -180,5 +180,6 @@ position = Vector2(292, 288)
 texture = ExtResource("1_0xm2m")
 script = SubResource("GDScript_1qa5v")
 
-[node name="Monster" parent="." unique_id=2141028737 instance=ExtResource("3_h2yge")]
-position = Vector2(1261, 412)
+[node name="Monster" parent="." unique_id=2141028737 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(1272, 498)
+player = NodePath("../Player")
