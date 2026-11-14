@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cn4nu0ygacd47"]
+
+[ext_resource type="Texture2D" uid="uid://ba275de0k2ivt" path="res://icon.svg" id="1_0fbet"]
+
+[node name="Control" type="Control" unique_id=1825705889]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BaseMenuScreen" type="MarginContainer" parent="." unique_id=1766091970]
+layout_mode = 0
+offset_right = 392.0
+offset_bottom = 210.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BaseMenuScreen" unique_id=1018532849]
+layout_mode = 2
+texture = ExtResource("1_0fbet")
