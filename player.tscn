@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjvu3fkeqyn37" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dxycjxo6esvwf" path="res://Player.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://7lduwesg7hfj" path="res://axe.png" id="3_i3pqv"]
 
 [node name="Player" type="CharacterBody2D" unique_id=583601776]
 script = ExtResource("1_onrkg")
@@ -12,3 +13,8 @@ polygon = PackedVector2Array(-1, 0, -6, 5, 7, 64, 19, 112, 28, 132, 26, 141, 17,
 [node name="Player" type="Sprite2D" parent="." unique_id=693363531]
 position = Vector2(-5, -1)
 texture = ExtResource("2_onrkg")
+
+[node name="Axe" type="Sprite2D" parent="." unique_id=1038641]
+position = Vector2(66.00001, -28)
+scale = Vector2(0.48969072, 0.46216217)
+texture = ExtResource("3_i3pqv")
