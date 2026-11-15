@@ -9,6 +9,7 @@ var Score = 0
 var Kills = 0
 
 var CanDamage = true
+var ee = false
 
 @export var monster: CharacterBody2D
 @export var player: CharacterBody2D
@@ -17,8 +18,11 @@ var CanDamage = true
 @export var DeathScreen: Sprite2D
 @export var ScoreL: Label
 @export var ZKills: Label
+@export var Canva: CanvasLayer
+@export var PlayButton: Button
 
 var GameEnd = false
+var PlayAgain = false
 
 var knockback_force = 800.0
 var knockback_velocity = Vector2.ZERO
@@ -72,6 +76,7 @@ func _physics_process(delta: float) -> void:
 		var Reset = true
 		CanDamage = false
 		Score += 75
+		Kills += 1
 		print(Score)
 		CanDamage = true
 		
@@ -95,13 +100,39 @@ func Heal():
 		GameEnd = true
 		
 	if GameEnd:
+	
 		player.hide()
 		player.set_collision_layer_value(1, false)
 		player.set_collision_mask_value(1, false)
 		
-		DeathScreen.show()
+		Canva.show()
 		ScoreL.text = "Score : " + str(Score)
-		ZKills.text = "You Killed: \n " + str(Kills) + "- Zombies"
+		ZKills.text = "Zombies Killed : " + str(Kills)
+		
+		
+		
+		
+func Restart() -> void:
+   
+		player.show()
+		player.set_collision_layer_value(1, true)
+		player.set_collision_mask_value(1, true)
+		GameEnd = false
+		
+		global_position = Vector2(1025, 500)
+		global_position = player.global_position
+		
+		
+		Health = 100
+		Kills = 0
+		Score = 0
+		
+		HP.text = "Health : " + str(Health)
+	
+		
+	
+		
+		
 		
 func take_damage(monster_position: Vector2):
 	# health -= 1
