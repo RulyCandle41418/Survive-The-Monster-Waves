@@ -218,12 +218,12 @@ func _process(delta: float) -> void:
 	if MainMenuMenuQuitButton.button_pressed:
 		get_tree().quit()
 		
-	if MainMenuMenuCreditsButton.button_pressed:
-		MainMenu.hide()
-		MainMenuLabel.hide()
-		MainMenuMenuCreditsButton.hide()
-		MainMenuMenuPlayButton.hide()
-		MainMenuMenuQuitButton.hide()
+	#if MainMenuMenuCreditsButton.button_pressed:
+		#MainMenu.hide()
+		#MainMenuLabel.hide()
+		#MainMenuMenuCreditsButton.hide()
+		#MainMenuMenuPlayButton.hide()
+		#MainMenuMenuQuitButton.hide()
 		
 		
 		
