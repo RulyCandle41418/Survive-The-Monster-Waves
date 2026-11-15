@@ -166,15 +166,57 @@ script/source = "extends Sprite2D
 resource_name = "OpenDifficultyMenu"
 script/source = "extends MenuButton
 
+@export var monster: CharacterBody2D
+
 
 @export var MainMenu: Sprite2D 
+@export var MainMenuLabel: Label
+@export var MainMenuMenuPlayButton: MenuButton
+@export var MainMenuMenuCreditsButton: MenuButton
+@export var MainMenuMenuQuitButton: MenuButton
+#
+@export var DifficultyMenu: Sprite2D
+@export var DifficultyMenuLabel: Label
+@export var DifficultyMenuLabel2: Label
+@export var DifficultyMenuSwitch: CheckButton
+@export var DifficultyMenuPlayButton: Button
+#
+@export var Menu: Control
+
+var e = false
+
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+
 	
-func _on_button_pressed() -> void:
-	MainMenu.hide()
+	
+	
+func _process(delta: float) -> void:
+	
+	if Menu.visible == true:
+		monster.set_physics_process(false)
+	
+	
+	if MainMenuMenuPlayButton.button_pressed:
+		MainMenu.hide()
+		MainMenuLabel.hide()
+		MainMenuMenuCreditsButton.hide()
+		MainMenuMenuPlayButton.hide()
+		MainMenuMenuQuitButton.hide()
+		
+		DifficultyMenu.show()
+		DifficultyMenuLabel.show()
+		DifficultyMenuLabel2.show()
+		DifficultyMenuPlayButton.show()
+		DifficultyMenuSwitch.show()
+		
+	if DifficultyMenuPlayButton.button_pressed:
+		Menu.hide()
+		monster.set_physics_process(true)
+		
+	if MainMenuMenuQuitButton.button_pressed:
+		get_tree().quit()
+		
 	
 	
 "
@@ -556,7 +598,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MainMenu" type="Sprite2D" parent="MainMenu" unique_id=117655350]
-visible = false
 position = Vector2(1019, 357.5)
 scale = Vector2(1.7154472, 3.2547169)
 texture = ExtResource("5_lquwl")
@@ -571,6 +612,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DifficultSelection" type="Sprite2D" parent="MainMenu" unique_id=1248396356]
+visible = false
 position = Vector2(1013.5, 357.5)
 scale = Vector2(1.6707315, 3.2547169)
 texture = ExtResource("5_lquwl")
@@ -591,8 +633,7 @@ offset_right = 58.876793
 offset_bottom = 0.72463226
 text = "Easy              Hard"
 
-[node name="MenuButton" type="MenuButton" parent="MainMenu" unique_id=1409665394]
-visible = false
+[node name="MenuButton" type="MenuButton" parent="MainMenu" unique_id=1409665394 node_paths=PackedStringArray("monster", "MainMenu", "MainMenuLabel", "MainMenuMenuPlayButton", "MainMenuMenuCreditsButton", "MainMenuMenuQuitButton", "DifficultyMenu", "DifficultyMenuLabel", "DifficultyMenuLabel2", "DifficultyMenuSwitch", "DifficultyMenuPlayButton", "Menu")]
 layout_mode = 0
 offset_left = 938.0
 offset_top = 292.0
@@ -601,9 +642,20 @@ offset_bottom = 323.0
 text = "Play"
 flat = false
 script = SubResource("GDScript_s3gyj")
+monster = NodePath("../../Monster")
+MainMenu = NodePath("../MainMenu")
+MainMenuLabel = NodePath("../MainMenu/Label")
+MainMenuMenuPlayButton = NodePath(".")
+MainMenuMenuCreditsButton = NodePath("../Credits")
+MainMenuMenuQuitButton = NodePath("../Quit")
+DifficultyMenu = NodePath("../DifficultSelection")
+DifficultyMenuLabel = NodePath("../DifficultSelection/Label")
+DifficultyMenuLabel2 = NodePath("../DifficultSelection/Label2")
+DifficultyMenuSwitch = NodePath("../CheckButton")
+DifficultyMenuPlayButton = NodePath("../Button")
+Menu = NodePath("..")
 
 [node name="Credits" type="MenuButton" parent="MainMenu" unique_id=445793030]
-visible = false
 layout_mode = 0
 offset_left = 939.0
 offset_top = 334.0
@@ -614,7 +666,6 @@ text = "Credits
 flat = false
 
 [node name="Quit" type="MenuButton" parent="MainMenu" unique_id=840846646]
-visible = false
 layout_mode = 0
 offset_left = 940.0
 offset_top = 484.0
@@ -625,6 +676,7 @@ text = "Quit
 flat = false
 
 [node name="CheckButton" type="CheckButton" parent="MainMenu" unique_id=600403]
+visible = false
 layout_mode = 0
 offset_left = 989.0
 offset_top = 316.0
@@ -632,6 +684,7 @@ offset_right = 1033.0
 offset_bottom = 340.0
 
 [node name="Button" type="Button" parent="MainMenu" unique_id=879297584]
+visible = false
 layout_mode = 0
 offset_left = 930.0
 offset_top = 428.0
