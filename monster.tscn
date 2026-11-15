@@ -14,14 +14,17 @@ const JUMP_VELOCITY = -400.0
 @export var monster: CharacterBody2D
 
 var Done = false
-
+var random = randi_range(1, 2)
 func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed(\"Mouse_left\") && global_position.distance_to(player.global_position) < 150:
-		
-		global_position = Vector2(2000, 500)
-		global_position = monster.global_position
+		if randi_range(1, 2) == 1:
+			global_position = Vector2(2000, 500)
+			global_position = monster.global_position
+		else:
+			global_position = Vector2(-450, 500)
+			global_position = monster.global_position
 		
 	elif global_position.distance_to(player.global_position) < 125:
 		player.take_damage(global_position)
