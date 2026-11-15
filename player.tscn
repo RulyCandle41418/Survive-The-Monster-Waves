@@ -12,3 +12,5 @@ polygon = PackedVector2Array(-1, 0, -6, 5, 7, 64, 19, 112, 28, 132, 26, 141, 17,
 [node name="Player" type="Sprite2D" parent="." unique_id=693363531]
 position = Vector2(-5, -1)
 texture = ExtResource("2_onrkg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=68316983]

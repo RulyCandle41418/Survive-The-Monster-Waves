@@ -14,6 +14,10 @@ var CanDamage = true
 
 var GameEnd = false
 
+var knockback_force = 2000.0
+var knockback_velocity = Vector2.ZERO
+var is_knocked_back = false
+
 
 
 	
@@ -34,6 +38,24 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	
+	if is_knocked_back:
+		velocity = knockback_velocity
+
+		knockback_velocity = knockback_velocity.move_toward(
+			Vector2.ZERO, 1200 * delta
+		)
+
+	if knockback_velocity.length() < 10:
+		is_knocked_back = false
+	
+	
+	
+	
+	
+	
+	
 
 	move_and_slide()
 	
@@ -58,6 +80,7 @@ func _process(delta: float) -> void:
 func Heal():
 	if global_position.distance_to(monster.global_position) < 125 && Health > 0 && monster.visible and CanDamage:
 		Health -= 1
+		
 		print(Health)
 
 	if Health < 1:
@@ -71,8 +94,14 @@ func Heal():
 		player.set_collision_layer_value(1, false)
 		player.set_collision_mask_value(1, false)
 		
- 
 		
-		
-		
-		
+func take_damage(monster_position: Vector2):
+	# health -= 1
+
+	var direction = (global_position - monster_position).normalized()
+
+	knockback_velocity = direction * knockback_force
+	is_knocked_back = true
+	
+	
+	
