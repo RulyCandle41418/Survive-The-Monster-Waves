@@ -114,6 +114,7 @@ func Heal():
 		
 func Restart() -> void:
    
+		Canva.hide()
 		player.show()
 		player.set_collision_layer_value(1, true)
 		player.set_collision_mask_value(1, true)
@@ -121,6 +122,12 @@ func Restart() -> void:
 		
 		global_position = Vector2(1025, 500)
 		global_position = player.global_position
+		
+		global_position = Vector2(2000, 500)
+		global_position = monster.global_position
+		
+		monster.set_collision_layer_value(1, true)
+		monster.set_collision_mask_value(1, true)
 		
 		
 		Health = 100

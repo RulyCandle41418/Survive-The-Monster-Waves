@@ -15,14 +15,16 @@ const JUMP_VELOCITY = -400.0
 
 var Done = false
 var random = randi_range(1, 2)
+var MHealth = 100
 func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed(\"Mouse_left\") && global_position.distance_to(player.global_position) < 150:
-		if randi_range(1, 2) == 1:
+		MHealth -= 50
+		if randi_range(1, 2) == 1 && MHealth == 0:
 			global_position = Vector2(2000, 500)
 			global_position = monster.global_position
-		else:
+		elif randi_range(1, 2) == 2 && MHealth == 0:
 			global_position = Vector2(-450, 500)
 			global_position = monster.global_position
 		
